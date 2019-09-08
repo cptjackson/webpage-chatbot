@@ -6,6 +6,8 @@ pipeline: supervised_embeddings
 # Configuration for Rasa Core.
 # https://rasa.com/docs/rasa/core/policies/
 policies:
+  - name: MappingPolicy
+  - name: FormPolicy
   - name: MemoizationPolicy
   - name: KerasPolicy
-  - name: MappingPolicy
+  - name: FallbackPolicy
