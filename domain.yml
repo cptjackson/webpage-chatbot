@@ -5,27 +5,111 @@ intents:
   - deny
   - mood_great
   - mood_unhappy
+  - music
+  - songs
+  - technology
+  - experience
+  - work
+  - explain_song
+
 
 actions:
-- utter_greet
-- utter_cheer_up
-- utter_did_that_help
-- utter_happy
-- utter_goodbye
+  - utter_greet
+  - utter_happy
+  - utter_sad
+  - utter_goodbye
+  - utter_music
+  - utter_songs
+  - utter_julia
+  - utter_technology
+  - utter_experience
+  - utter_after_you
+  - utter_obvious
+  - utter_stand_still
+
+
+entities:
+  - work_type
+  - song
+
+
+slots:
+  work_type:
+    type: unfeaturized
+    auto_fill: false
+  song:
+    type: categorical
+    values:
+      - After You
+      - Stand Still
+      - Obvious
+  requested_slot:
+    type: unfeaturized
+
 
 templates:
+  utter_default:
+  - text: "Sorry, I didn't understand that. Can you try again?"
+
   utter_greet:
-  - text: "Hey! How are you?"
-
-  utter_cheer_up:
-  - text: "Here is something to cheer you up:"
-    image: "https://i.imgur.com/nGF1K8f.jpg"
-
-  utter_did_that_help:
-  - text: "Did that help you?"
+  - text: "Hey! Welcome to my site. How are you doing today?"
 
   utter_happy:
-  - text: "Great carry on!"
+    - text: "Glad to hear it! :) What can I help you with?"
+
+  utter_sad:
+  - text: "Sorry to hear that. :( What can I help you with?"
 
   utter_goodbye:
   - text: "Bye"
+
+  utter_music:
+  - text: "Ah, you want to know about my music? Sweet. I play a bunch of
+      different instruments, I am an active member of the choral community, and
+      I co-write pop songs with emerging artist Julia Tynes. We've had three on
+      the radio so far."
+
+  utter_songs:
+  - text: "I have collaborated on quite a few pop songs which have played on
+      Canadian radio: After You, Obvious, and Stand Still. Want to hear more
+      about any of them?"
+    buttons:
+    - title: After You
+      payload: /explain_song{"song":"After You"}
+    - title: Obvious
+      payload: /explain_song{"song":"Obvious"}
+    - title: Stand Still
+      payload: /explain_song{"song":"Stand Still"}
+    - title: Nah
+      payload: /deny
+
+  utter_julia:
+  - text: "Julia Tynes is an emerging pop/R&B artist based in Toronto. You can
+      find out more about her music at her website: juliatynes.com"
+
+  utter_experience:
+  - text: What part of my work experience are you interested in?
+    buttons:
+    - title: Data science work at RBC
+      payload: /work{"work_type":"rbc"}
+    - title: Teaching data science at U of T
+      payload: /work{"work_type":"uoft"}
+    - title: Freelancing
+      payload: /work{"work_type":"freelance"}
+    - title: Academia
+      payload: /work{"work_type":"academia"}
+
+  utter_technology:
+  - text: This is a placeholder!
+
+  utter_after_you:
+  - text: Placeholder for After You
+
+  utter_obvious:
+  - text: Placeholder for Obvious
+
+  utter_stand_still:
+  - text: Placeholder for Stand Still
+
+forms:
+  - experience_form
